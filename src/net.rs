@@ -247,7 +247,8 @@ impl Network {
         let mut num = 0;
         for (prefix, ref mut group) in &mut self.groups {
             let to_remove: Vec<_> = group.iter()
-                .filter_map(|(ref key, ref data)| if !data.is_malicious() && sample_NN() < thresh {
+                .filter_map(|(ref key, ref data)| if !data.is_malicious() &&
+                                                     sample_NN() < thresh {
                     Some(**key)
                 } else {
                     None
@@ -364,7 +365,7 @@ impl Network {
         let mut to_relocate: Option<(NodeName, u32)> = None;
         for (node_name, ref mut node_data) in group.iter_mut() {
             if *node_name == new_node {
-                continue;   // skip this node
+                continue; // skip this node
             }
             if node_data.churn_and_can_age() {
                 if to_relocate.map_or(true, |n| node_data.churns() > n.1) {

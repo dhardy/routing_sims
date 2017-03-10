@@ -73,7 +73,7 @@ impl<'a> Tool for DirectCalcTool<'a> {
     fn print_message(&self) {
         println!("Tool: calculate probability of compromise, assuming all groups have minimum \
                   size");
-        let any_group = true;   // only support this now
+        let any_group = true; // only support this now
         if any_group {
             println!("Output: the probability that at least one group is compromised");
         } else {
@@ -128,7 +128,7 @@ impl<'a> Tool for SimStructureTool<'a> {
     fn print_message(&self) {
         println!("Tool: simulate allocation of nodes to groups; each has size at least the \
                   specified minimum size");
-        let any_group = true;   // only support this now
+        let any_group = true; // only support this now
         if any_group {
             println!("Output: the probability that at least one group is compromised");
         } else {
@@ -246,7 +246,7 @@ impl<'a, Q: Quorum, A: AttackStrategy + Clone> Tool for FullSimTool<'a, Q, A>
 {
     fn print_message(&self) {
         println!("Tool: simulate group operations");
-        let any_group = true;   // only support this now
+        let any_group = true; // only support this now
         if any_group {
             println!("Output: the probability that at least one group is compromised");
         } else {

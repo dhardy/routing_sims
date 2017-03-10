@@ -68,7 +68,7 @@ impl<T: Copy + Debug + AddAssign + PartialOrd<T> + DefaultStep<T>> SamplePoints<
 impl<T: FromStr> FromStr for SamplePoints<T>
     where <T as FromStr>::Err: Debug
 {
-    type Err = ();  // we just panic!
+    type Err = (); // we just panic!
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         if s.contains('-') {
             // We have a range; check for a step:
@@ -113,8 +113,8 @@ struct SamplePointsIterator<'a, T: Copy + Debug + AddAssign + PartialOrd<T> + De
 }
 
 impl<'a, T: Copy + Debug + AddAssign + PartialOrd<T> + DefaultStep<T> + 'a> Iterator
-        for SamplePointsIterator<'a, T>
-{
+    for
+    SamplePointsIterator<'a, T> {
     type Item = T;
     fn next(&mut self) -> Option<Self::Item> {
         let i = self.i;
@@ -124,19 +124,15 @@ impl<'a, T: Copy + Debug + AddAssign + PartialOrd<T> + DefaultStep<T> + 'a> Iter
                     None => {
                         self.prev = Some(start);
                         self.prev
-                    },
+                    }
                     Some(mut x) => {
                         let step = step.unwrap_or(T::default_step(start));
                         x += step;
                         self.prev = Some(x);
-                        if x > stop {
-                            None
-                        } else {
-                            Some(x)
-                        }
-                    },
+                        if x > stop { None } else { Some(x) }
+                    }
                 }
-            },
+            }
             &SamplePoints::List(ref v) => {
                 if i >= v.len() {
                     None
@@ -144,7 +140,7 @@ impl<'a, T: Copy + Debug + AddAssign + PartialOrd<T> + DefaultStep<T> + 'a> Iter
                     self.i = i + 1;
                     Some(v[i])
                 }
-            },
+            }
             &SamplePoints::Number(n) => {
                 if i > 0 {
                     None
@@ -152,7 +148,7 @@ impl<'a, T: Copy + Debug + AddAssign + PartialOrd<T> + DefaultStep<T> + 'a> Iter
                     self.i = 1;
                     Some(n)
                 }
-            },
+            }
         }
     }
 }
@@ -540,7 +536,7 @@ impl RelOrAbs<RR> {
 impl<T: FromStr> FromStr for RelOrAbs<T>
     where <T as FromStr>::Err: Debug
 {
-    type Err = ();  // we just panic!
+    type Err = (); // we just panic!
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         if s.ends_with('%') {
             let mut s = s.to_string();

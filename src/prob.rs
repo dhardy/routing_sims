@@ -67,7 +67,7 @@ pub fn prob_compromise(n: NN, r: NN, k: NN, q: NN) -> RR {
     let mut combs_compr: RR = 0 as RR;
     for x in q..(k + 1) {
         if x > r {
-            continue;   // impossible: 0 combinations to add
+            continue; // impossible: 0 combinations to add
         }
 
         // x is the number of red nodes that get picked; this is the number of
